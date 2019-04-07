@@ -42,3 +42,13 @@ def draw_square(t, size):
 def store_position_data(L, t):
   position = t.position()
   L.append([position[0], position[1], escaped(position)])
+
+def draw_squares(number):
+  t = turtle.Turtle()
+  L = []
+  for i in range(1, number + 1):
+    t.penup()
+    t.goto(-i, -i)
+    t.pendown()
+    L.extend(draw_square(t, i * 2))
+  return L
