@@ -90,3 +90,11 @@ def draw_spirals_until_escaped():
     t.right(turn)
     store_position_data(L, t)
   return L
+
+def draw_random_spirangles():
+  L = []
+  for i in range(10):
+    L.extend(draw_spirals_until_escaped())
+
+  with open("data_rand", "wb") as f:
+    pickle.dump(L, f)
