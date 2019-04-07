@@ -15,9 +15,32 @@ def draw_bag():
 
 
 if __name__ == '__main__':
-  turtle.setworldcoordinates(-70., -70., 70., 70)
-  draw_bag()
-  turtle.mainloop()
+  fns = { "line":       draw_line,
+          "squares":    draw_squares_until_escaped,
+          "triangles":  draw_triangles,
+          "spirangles": draw_random_spirangles }
+
+  parser = argparse.ArgumentParser()
+  parser.add_argument("-f", "--function",
+      choices = fns,
+      help = "One of " + ", ".join(fns.keys()))
+  parser.add_argument("-n", "--number",
+                  default = 50,
+                  type = int, help = "How many?")
+  args = parser.parse_args()
+
+  try:
+    f =fns[args.function]
+    turtle.setworldcoordinates(-70., -70., 70., 70)
+    draw_bag()
+    turtle.hideturtle()
+    if len(inspect.getargspec(f).args) == 1:
+      f(args.number)
+    else:
+      f()
+      turtle.mainloop()
+  except keyError:
+    parser.print_help()
 
 
 def escaped(position):
@@ -90,6 +113,7 @@ def draw_spirals_until_escaped():
     t.right(turn)
     store_position_data(L, t)
   return L
+
 
 def draw_random_spirangles():
   L = []
