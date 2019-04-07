@@ -38,3 +38,7 @@ def draw_square(t, size):
     t.left(90)
     store_position_data(L, t)
   return L
+
+def store_position_data(L, t):
+  position = t.position()
+  L.append([position[0], position[1], escaped(position)])
