@@ -52,3 +52,9 @@ def draw_squares(number):
     t.pendown()
     L.extend(draw_square(t, i * 2))
   return L
+
+def draw_squares_until_escaped(n):
+  t = turtle.Turtle()
+  L = draw_squares(n)
+  with open("data_square", "wb") as f:
+    pickle.dump(L, f)
