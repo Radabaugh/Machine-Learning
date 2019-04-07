@@ -1,4 +1,5 @@
 import turtle
+import random
 import inspect
 import argparse
 
