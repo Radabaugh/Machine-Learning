@@ -30,3 +30,11 @@ def draw_line():
   while not escaped(t.position()):
     t.left(angle)
     t.forward(step)
+
+def draw_square(t, size):
+  L = []
+  for i in range(4):
+    t.forward(size)
+    t.left(90)
+    store_position_data(L, t)
+  return L
