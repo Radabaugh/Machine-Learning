@@ -67,5 +67,24 @@ def classify(tree, label, data):
         return node[key]
 
 
-with open("data", "rb") as f:
-  L = pickle.load(f)
+def as_rule_str(tree, label, ident=0):
+  space_ident = '  '*ident
+  s = space_ident
+  root = list(tree.keys())[0]
+  node = tree[root]
+  index = label.index(root)
+  for key in node.keys():
+    s += 'if ' + label[index] + ' = ' + str(key)
+    if isinstance(node[key], dict):
+      s += ':\n' + space_ident + as_rule_str(node[key], label, ident + 1)
+    else:
+      s += ' then ' + str(node[key]) + ('.\n' if ident == 0 else ', ')
+  if s[-2:] == ', ':
+    s = s[:-2]
+  s += '\n'
+
+  return s
+
+
+with open("data", "rb") as file:
+  L = pickle.load(file)
