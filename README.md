@@ -14,3 +14,9 @@ python escape.py --function=spirangles
 ```
 
 ## Decide!
+
+In this chapter, we used supervised machine learning to locate the edges of the paper bag. We used category data, treating each coordinate as a specific value, rather than a number from a possible range. Because we knew the shape of the bag, we were able to reformulate the decision tree using numeric ranges.
+
+```
+python decide.py
+```
