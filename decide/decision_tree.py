@@ -29,5 +29,11 @@ def best_feature_for_split(data):
   return best_feature
 
 
+def potential_leaf_node(data):
+  count = collections.Counter([i[-1] for i in data])
+
+  return count.most_common(1)[0] # The top item
+
+
 with open("data", "rb") as f:
   L = pickle.load(f)
